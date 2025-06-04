@@ -4,6 +4,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollProgress from "@/components/ScrollProgress";
+import PageTransition from "@/components/PageTransition";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import FrappeSolutions from "./pages/FrappeSolutions";
@@ -19,14 +21,14 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollProgress />
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/frappe-solutions" element={<FrappeSolutions />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+          <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
+          <Route path="/frappe-solutions" element={<PageTransition><FrappeSolutions /></PageTransition>} />
+          <Route path="/team" element={<PageTransition><Team /></PageTransition>} />
+          <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

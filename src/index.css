@@ -108,4 +108,103 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Enhanced animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Interactive elements */
+  .interactive-card {
+    @apply transition-all duration-300 hover:scale-105 hover:rotate-1 cursor-pointer;
+  }
+
+  .interactive-card:hover {
+    @apply shadow-2xl shadow-tech-blue/20;
+  }
+
+  /* Smooth page transitions */
+  .page-transition {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  /* Enhanced button animations */
+  .btn-primary {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .btn-primary:hover::before {
+    transform: translateX(100%);
+  }
+
+  /* Loading animations */
+  .skeleton {
+    @apply bg-gradient-to-r from-white/5 via-white/10 to-white/5 animate-pulse;
+  }
+
+  /* Micro interactions */
+  .micro-bounce {
+    @apply transition-transform duration-200 hover:scale-110 active:scale-95;
+  }
+
+  .micro-slide {
+    @apply transition-transform duration-200 hover:translate-x-1;
+  }
+
+  /* Gradient text animations */
+  .gradient-text {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  /* Form enhancements */
+  .form-field {
+    @apply transition-all duration-300;
+  }
+
+  .form-field:focus-within {
+    @apply scale-105 shadow-lg shadow-tech-blue/20;
+  }
+
+  /* Scroll progress indicator */
+  .scroll-progress {
+    @apply fixed top-0 left-0 h-1 bg-gradient-to-r from-tech-blue to-tech-electric z-50 transition-all duration-300;
+  }
 }
