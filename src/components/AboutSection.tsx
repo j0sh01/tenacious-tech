@@ -1,5 +1,7 @@
 
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -31,37 +33,43 @@ const AboutSection = () => {
 
   return (
     <section id="about" ref={sectionRef} className="py-20 relative">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="fade-in-element opacity-0">
-            <h2 className="font-space font-bold text-4xl md:text-6xl mb-6">
+            <h2 className="font-space font-bold text-3xl sm:text-4xl lg:text-6xl mb-6">
               Innovation Through
               <span className="text-tech-electric block">Technology</span>
             </h2>
-            <p className="text-xl text-white/80 mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/80 mb-6 leading-relaxed">
               At TenaciousTech, we believe in pushing the boundaries of what's possible. 
               Our team of expert developers and designers work tirelessly to create solutions 
               that not only meet today's needs but anticipate tomorrow's challenges.
             </p>
-            <p className="text-lg text-white/70 leading-relaxed">
+            <p className="text-base sm:text-lg text-white/70 mb-8 leading-relaxed">
               From enterprise-grade Frappe applications to cutting-edge mobile experiences, 
               we combine technical excellence with creative innovation to deliver results 
               that exceed expectations.
             </p>
+            <Link to="/portfolio">
+              <button className="bg-tech-blue hover:bg-tech-electric transition-all duration-300 hover-glow px-8 py-4 rounded-lg text-white font-medium inline-flex items-center group">
+                View Our Work
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
           </div>
 
           <div className="fade-in-element opacity-0">
-            <div className="glass-morphism p-8 rounded-2xl">
-              <h3 className="font-space font-semibold text-2xl mb-8 text-center">
+            <div className="glass-morphism p-6 sm:p-8 rounded-2xl">
+              <h3 className="font-space font-semibold text-xl sm:text-2xl mb-8 text-center">
                 Our Impact
               </h3>
               <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="font-space font-bold text-3xl md:text-4xl text-tech-electric mb-2">
+                    <div className="font-space font-bold text-2xl sm:text-3xl lg:text-4xl text-tech-electric mb-2">
                       {stat.number}
                     </div>
-                    <div className="text-white/80 text-sm">
+                    <div className="text-white/80 text-xs sm:text-sm">
                       {stat.label}
                     </div>
                   </div>
