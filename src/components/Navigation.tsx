@@ -34,6 +34,7 @@ const Navigation = () => {
     { label: 'Home', action: () => scrollToSection('home') },
     { label: 'Services', to: '/services' },
     { label: 'Frappe Solutions', to: '/frappe-solutions' },
+    { label: 'Team', to: '/team' },
     { label: 'About', action: () => scrollToSection('about') },
     { label: 'Portfolio', to: '/portfolio' },
     { label: 'Contact', action: () => scrollToSection('contact') },

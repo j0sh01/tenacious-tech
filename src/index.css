@@ -92,7 +92,9 @@
 
   .service-card,
   .product-card,
-  .project-card {
+  .project-card,
+  .team-card,
+  .org-card {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -100,7 +102,9 @@
 
   .service-card.animate-slide-up,
   .product-card.animate-slide-up,
-  .project-card.animate-slide-up {
+  .project-card.animate-slide-up,
+  .team-card.animate-slide-up,
+  .org-card.animate-slide-up {
     opacity: 1;
     transform: translateY(0);
   }
