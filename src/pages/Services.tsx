@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 import { Code, Smartphone, Database, Cloud, Zap, Shield } from 'lucide-react';
 
 const Services = () => {
@@ -114,6 +115,12 @@ const Services = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Our Services - Software Development & Technology Solutions"
+        description="Comprehensive technology solutions including Frappe development, mobile applications, custom systems, cloud solutions, and performance optimization services in Tanzania."
+        keywords="software development services, Frappe development, mobile app development, custom software, cloud solutions, performance optimization, security solutions, Tanzania"
+        url="https://tenacioustech.com/services"
+      />
       <Navigation />
       
       {/* Hero Section */}

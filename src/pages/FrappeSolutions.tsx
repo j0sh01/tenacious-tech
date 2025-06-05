@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 import { ExternalLink, Users, TrendingUp, MessageSquare, HelpCircle, BarChart3, GraduationCap, CreditCard } from 'lucide-react';
 
 const FrappeSolutions = () => {
@@ -142,6 +143,12 @@ const FrappeSolutions = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Frappe Solutions - ERPNext, CRM, HR & Custom Development"
+        description="Expert Frappe ecosystem implementation including ERPNext, Frappe HR, CRM, Helpdesk, and custom Frappe applications. Transform your business with proven Frappe solutions."
+        keywords="Frappe solutions, ERPNext implementation, Frappe HR, Frappe CRM, Frappe Helpdesk, custom Frappe development, ERP solutions Tanzania"
+        url="https://tenacioustech.com/frappe-solutions"
+      />
       <Navigation />
       
       {/* Hero Section */}

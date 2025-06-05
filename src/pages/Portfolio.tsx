@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 import { ExternalLink, Github, Calendar, Users, TrendingUp } from 'lucide-react';
 
 const Portfolio = () => {
@@ -138,6 +139,12 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Our Portfolio - Successful Software Projects & Case Studies"
+        description="Explore our portfolio of successful software projects including ERP implementations, mobile applications, and custom systems across various industries in Tanzania and beyond."
+        keywords="software portfolio, project case studies, ERP implementations, mobile app projects, custom software solutions, Tanzania software projects"
+        url="https://tenacioustech.com/portfolio"
+      />
       <Navigation />
       
       {/* Hero Section */}
