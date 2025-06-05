@@ -63,25 +63,25 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: 'Visit Us',
-      content: ['123 Innovation Street', 'Tech City, TC 12345'],
+      content: ['Dar es Salaam', 'Tanzania'],
       gradient: 'from-blue-500/20 to-cyan-500/20'
     },
     {
       icon: Phone,
       title: 'Call Us',
-      content: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+      content: ['+255 748 624 706'],
       gradient: 'from-green-500/20 to-emerald-500/20'
     },
     {
       icon: Mail,
       title: 'Email Us',
-      content: ['hello@tenacioustech.com', 'support@tenacioustech.com'],
+      content: ['info@tenacioustech.com', 'support@tenacioustech.com'],
       gradient: 'from-purple-500/20 to-pink-500/20'
     },
     {
       icon: Clock,
       title: 'Working Hours',
-      content: ['Mon - Fri: 9:00 AM - 6:00 PM', 'Sat: 10:00 AM - 4:00 PM'],
+      content: ['Mon - Fri: 8:30 AM - 6:00 PM'],
       gradient: 'from-orange-500/20 to-red-500/20'
     }
   ];

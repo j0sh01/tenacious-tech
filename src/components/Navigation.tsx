@@ -94,7 +94,7 @@ const Navigation = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+          className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors z-50 relative"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <div className="relative w-6 h-6">
@@ -112,39 +112,51 @@ const Navigation = () => {
       </div>
 
       {/* Enhanced Mobile Menu */}
-      <div className={`lg:hidden glass-morphism mt-4 mx-4 rounded-2xl overflow-hidden transition-all duration-500 ${
-        isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+      <div className={`lg:hidden fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
-        <div className="p-6">
-          <div className="flex flex-col space-y-4">
-            {navItems.map((item, index) => (
-              item.to ? (
-                <Link 
-                  key={index}
-                  to={item.to}
-                  className="text-white/80 hover:text-white transition-colors duration-200 py-2 hover:translate-x-2 transform"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <button 
-                  key={index}
-                  onClick={item.action}
-                  className="text-white/80 hover:text-white transition-all duration-200 py-2 text-left hover:translate-x-2 transform"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {item.label}
-                </button>
-              )
-            ))}
-            <Button className="bg-tech-blue hover:bg-tech-electric transition-all duration-300 mt-4 hover:scale-105">
-              Get Started
-            </Button>
+        <div className="bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-xl border-b border-white/10 pt-24 pb-6">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col space-y-4">
+              {navItems.map((item, index) => (
+                item.to ? (
+                  <Link 
+                    key={index}
+                    to={item.to}
+                    className="text-white/80 hover:text-white transition-colors duration-200 py-3 px-4 rounded-lg hover:bg-white/10 hover:translate-x-2 transform text-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button 
+                    key={index}
+                    onClick={item.action}
+                    className="text-white/80 hover:text-white transition-all duration-200 py-3 px-4 rounded-lg hover:bg-white/10 text-left hover:translate-x-2 transform text-lg"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    {item.label}
+                  </button>
+                )
+              ))}
+              <div className="pt-4">
+                <Button className="bg-tech-blue hover:bg-tech-electric transition-all duration-300 mt-4 hover:scale-105 w-full">
+                  Get Started
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
     </nav>
   );
 };

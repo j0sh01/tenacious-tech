@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
   const frappeProducts = [
     { name: 'ERPNext', url: 'https://frappe.io/erpnext' },
     { name: 'Frappe HR', url: 'https://frappe.io/hr' },
@@ -36,15 +38,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center text-white/70 text-sm">
                 <Mail className="w-4 h-4 mr-3 text-tech-electric" />
-                hello@tenacioustech.com
+                info@tenacioustech.com
               </div>
               <div className="flex items-center text-white/70 text-sm">
                 <Phone className="w-4 h-4 mr-3 text-tech-electric" />
-                +1 (555) 123-4567
+                +255 748 624 706
               </div>
               <div className="flex items-center text-white/70 text-sm">
                 <MapPin className="w-4 h-4 mr-3 text-tech-electric" />
-                123 Innovation Street, Tech City
+                Dar es Salaam, Tanzania
               </div>
             </div>
           </div>
@@ -121,7 +123,7 @@ const Footer = () => {
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <p className="text-white/60 text-sm text-center sm:text-left">
-              &copy; 2024 TenaciousTech. All rights reserved.
+              &copy; {currentYear} TenaciousTech. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <button className="text-white/60 hover:text-tech-electric transition-colors duration-200">
