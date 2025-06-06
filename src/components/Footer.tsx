@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, ExternalLink, Instagram, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -22,6 +22,33 @@ const Footer = () => {
     }},
   ];
 
+  const socialLinks = [
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      url: 'https://instagram.com/tenacioustech',
+      color: 'hover:text-pink-500'
+    },
+    {
+      name: 'LinkedIn',
+      icon: Linkedin,
+      url: 'https://linkedin.com/company/tenacioustech',
+      color: 'hover:text-blue-500'
+    },
+    {
+      name: 'GitHub',
+      icon: Github,
+      url: 'https://github.com/tenacioustech',
+      color: 'hover:text-white'
+    },
+    {
+      name: 'Twitter/X',
+      icon: Twitter,
+      url: 'https://twitter.com/tenacioustech',
+      color: 'hover:text-blue-400'
+    }
+  ];
+
   return (
     <footer className="py-16 border-t border-white/10">
       <div className="container mx-auto px-4 sm:px-6">
@@ -35,7 +62,7 @@ const Footer = () => {
               Pioneering the future of software development with innovative Frappe solutions, 
               mobile applications, and custom systems that drive digital transformation.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-3 mb-6">
               <div className="flex items-center text-white/70 text-sm">
                 <Mail className="w-4 h-4 mr-3 text-tech-electric" />
                 info@tenacioustech.com
@@ -47,6 +74,25 @@ const Footer = () => {
               <div className="flex items-center text-white/70 text-sm">
                 <MapPin className="w-4 h-4 mr-3 text-tech-electric" />
                 Dar es Salaam, Tanzania
+              </div>
+            </div>
+            
+            {/* Social Media Links */}
+            <div className="space-y-3">
+              <h4 className="font-semibold text-white text-sm">Follow Us</h4>
+              <div className="flex space-x-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-white/60 transition-colors duration-200 ${social.color} hover:scale-110 transform transition-transform`}
+                    aria-label={`Follow us on ${social.name}`}
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
