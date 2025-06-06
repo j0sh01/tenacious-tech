@@ -1,5 +1,5 @@
-
 import { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -13,9 +13,11 @@ const ContactSection = () => {
     email: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const { toast } = useToast();
+  
+  // Replace "YOUR_FORM_ID" with your actual Formspree form ID
+  const [state, handleFormspreeSubmit] = useForm("YOUR_FORM_ID");
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -35,19 +37,21 @@ const ContactSection = () => {
     
     if (!validateForm()) return;
     
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    // Submit to Formspree
+    await handleFormspreeSubmit(e);
+  };
+
+  // Handle successful submission
+  if (state.succeeded) {
     toast({
       title: "Message Sent Successfully! 🎉",
       description: "We'll get back to you within 24 hours.",
     });
     
+    // Reset form
     setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
-  };
+    setErrors({});
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -118,7 +122,13 @@ const ContactSection = () => {
                       errors.name ? 'border-red-500 shake' : 'focus:border-tech-electric'
                     }`}
                     placeholder="Your name"
-                    disabled={isSubmitting}
+                    disabled={state.submitting}
+                  />
+                  <ValidationError 
+                    prefix="Name" 
+                    field="name"
+                    errors={state.errors}
+                    className="text-red-400 text-sm mt-1"
                   />
                   {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
                 </div>
@@ -136,7 +146,13 @@ const ContactSection = () => {
                       errors.email ? 'border-red-500' : 'focus:border-tech-electric'
                     }`}
                     placeholder="your@email.com"
-                    disabled={isSubmitting}
+                    disabled={state.submitting}
+                  />
+                  <ValidationError 
+                    prefix="Email" 
+                    field="email"
+                    errors={state.errors}
+                    className="text-red-400 text-sm mt-1"
                   />
                   {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
                 </div>
@@ -154,7 +170,13 @@ const ContactSection = () => {
                     errors.message ? 'border-red-500' : 'focus:border-tech-electric'
                   }`}
                   placeholder="Tell us about your project..."
-                  disabled={isSubmitting}
+                  disabled={state.submitting}
+                />
+                <ValidationError 
+                  prefix="Message" 
+                  field="message"
+                  errors={state.errors}
+                  className="text-red-400 text-sm mt-1"
                 />
                 {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
                 <div className="text-right text-xs text-white/50 mt-1">
@@ -163,10 +185,10 @@ const ContactSection = () => {
               </div>
               <Button 
                 type="submit"
-                disabled={isSubmitting}
+                disabled={state.submitting}
                 className="w-full bg-tech-blue hover:bg-tech-electric transition-all duration-300 hover-glow hover:scale-105 py-3 text-lg btn-primary group relative overflow-hidden"
               >
-                {isSubmitting ? (
+                {state.submitting ? (
                   <LoadingSpinner size="sm" />
                 ) : (
                   <>
