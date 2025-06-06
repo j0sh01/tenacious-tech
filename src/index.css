@@ -1,48 +1,63 @@
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 6 11% 4%;
-    --foreground: 210 40% 98%;
-
-    --card: 12 6% 8%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 12 6% 8%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
-
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
-
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
     --radius: 0.75rem;
+  }
 
-    --sidebar-background: 12 6% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 217 91% 60%;
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
@@ -50,161 +65,74 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground font-inter;
-    background: linear-gradient(135deg, #0A0E27 0%, #1E293B 50%, #0F172A 100%);
-    min-height: 100vh;
-  }
-
-  html {
-    scroll-behavior: smooth;
+    @apply bg-background text-foreground;
   }
 }
 
-@layer components {
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 75%, #475569 100%);
+    min-height: 100vh;
+  }
+
+  .font-space {
+    font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
   .glass-morphism {
-    @apply backdrop-blur-xl bg-white/5 border border-white/10;
-  }
-  
-  .tech-gradient {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
-  }
-  
-  .hover-glow {
-    transition: all 0.3s ease;
-  }
-  
-  .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .fade-in-element {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .fade-in-element.animate-fade-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .service-card,
-  .product-card,
-  .project-card,
-  .team-card,
-  .org-card {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .service-card.animate-slide-up,
-  .product-card.animate-slide-up,
-  .project-card.animate-slide-up,
-  .team-card.animate-slide-up,
-  .org-card.animate-slide-up {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Enhanced animations */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-10px) rotate(1deg); }
-    66% { transform: translateY(5px) rotate(-1deg); }
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  .shimmer {
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
-  }
-
-  /* Interactive elements */
-  .interactive-card {
-    @apply transition-all duration-300 hover:scale-105 hover:rotate-1 cursor-pointer;
-  }
-
-  .interactive-card:hover {
-    @apply shadow-2xl shadow-tech-blue/20;
-  }
-
-  /* Smooth page transitions */
-  .page-transition {
-    @apply transition-all duration-500 ease-out;
-  }
-
-  /* Enhanced button animations */
-  .btn-primary {
-    @apply relative overflow-hidden;
-  }
-
-  .btn-primary::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-  }
-
-  .btn-primary:hover::before {
-    transform: translateX(100%);
-  }
-
-  /* Loading animations */
-  .skeleton {
-    @apply bg-gradient-to-r from-white/5 via-white/10 to-white/5 animate-pulse;
-  }
-
-  /* Micro interactions */
-  .micro-bounce {
-    @apply transition-transform duration-200 hover:scale-110 active:scale-95;
-  }
-
-  .micro-slide {
-    @apply transition-transform duration-200 hover:translate-x-1;
-  }
-
-  /* Gradient text animations */
-  .gradient-text {
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
-    background-size: 200% 100%;
+  .text-gradient {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmer 3s ease-in-out infinite;
+    background-clip: text;
   }
 
-  /* Form enhancements */
-  .form-field {
-    @apply transition-all duration-300;
+  .tech-grid {
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
+}
 
-  .form-field:focus-within {
-    @apply scale-105 shadow-lg shadow-tech-blue/20;
-  }
+/* Hide Google Translate elements */
+.goog-te-banner-frame {
+  display: none !important;
+}
 
-  /* Scroll progress indicator */
-  .scroll-progress {
-    @apply fixed top-0 left-0 h-1 bg-gradient-to-r from-tech-blue to-tech-electric z-50 transition-all duration-300;
-  }
+.goog-te-menu-frame {
+  max-height: 400px !important;
+  overflow-y: auto !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-te-combo {
+  display: none !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
+/* Hide the Google Translate banner */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+}
+
+.goog-te-balloon-frame {
+  display: none !important;
 }
