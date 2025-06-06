@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Button } from '@/components/ui/button';
@@ -32,7 +33,7 @@ const ContactSection = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!validateForm()) return;
