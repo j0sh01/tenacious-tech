@@ -18,8 +18,10 @@ const ServicesSection = () => {
       { threshold: 0.1 }
     );
 
-    const serviceCards = sectionRef.current?.querySelectorAll('.service-card');
-    serviceCards?.forEach((card) => observer.observe(card));
+    if (sectionRef.current) {
+      const serviceCards = sectionRef.current.querySelectorAll('.service-card');
+      serviceCards.forEach((card) => observer.observe(card));
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -71,7 +73,6 @@ const ServicesSection = () => {
             <div
               key={index}
               className={`service-card glass-card p-8 rounded-2xl tech-glow transition-all duration-500 bg-gradient-to-br ${service.gradient} opacity-0 tech-border modern-card`}
-              style={{ animationDelay: `${index * 0.3}s` }}
             >
               <div className="mb-6 flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-tech-primary to-tech-accent rounded-lg flex items-center justify-center mr-4">

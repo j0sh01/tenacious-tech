@@ -18,8 +18,10 @@ const AboutSection = () => {
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll('.fade-in-element');
-    elements?.forEach((element) => observer.observe(element));
+    if (sectionRef.current) {
+      const elements = sectionRef.current.querySelectorAll('.fade-in-element');
+      elements.forEach((element) => observer.observe(element));
+    }
 
     return () => observer.disconnect();
   }, []);
