@@ -2,9 +2,22 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Play } from 'lucide-react';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);
+  
+  // Service-related words for typing animation
+  const serviceWords = [
+    'Frappe Development',
+    'Mobile Applications', 
+    'Custom Systems',
+    'ERP Solutions',
+    'API Integrations',
+    'Cloud Infrastructure'
+  ];
+  
+  const typedText = useTypingAnimation(serviceWords, 150, 2000);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,10 +68,20 @@ const HeroSection = () => {
             </h1>
           </div>
 
+          {/* Typing Animation Section */}
+          <div className="fade-in-element opacity-0 mb-8">
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-space font-semibold text-tech-primary mb-4">
+              We specialize in{' '}
+              <span className="text-tech-accent border-r-2 border-tech-accent animate-pulse">
+                {typedText}
+              </span>
+            </div>
+          </div>
+
           {/* Subtitle */}
           <div className="fade-in-element opacity-0 mb-12">
             <p className="text-lg sm:text-xl lg:text-2xl text-tech-muted max-w-4xl mx-auto leading-relaxed">
-              We specialize in cutting-edge Frappe-based solutions, mobile applications, 
+              We deliver cutting-edge Frappe-based solutions, mobile applications, 
               and custom systems that transform businesses and drive digital innovation.
             </p>
           </div>
