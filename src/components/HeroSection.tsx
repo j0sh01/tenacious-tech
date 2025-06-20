@@ -1,17 +1,17 @@
-
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Play } from 'lucide-react';
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);
-  
+  const { t } = useTranslation();
   // Service-related words for typing animation
   const serviceWords = [
-    'Frappe Development',
-    'Mobile Applications', 
-    'Custom Systems',
+    t('services_frappe_title'),
+    t('services_mobile_title'),
+    t('services_custom_title'),
     'ERP Solutions',
     'API Integrations',
     'Cloud Infrastructure'
@@ -63,7 +63,7 @@ const HeroSection = () => {
             <h1 className="font-space font-bold text-3xl sm:text-5xl lg:text-7xl xl:text-8xl leading-tight">
               <span className="block text-tech-light">TenaciousTech</span>
               <span className="block gradient-text neon-glow mt-2">
-                Innovation Through Technology
+                {t('hero_title')}
               </span>
             </h1>
           </div>
@@ -71,7 +71,7 @@ const HeroSection = () => {
           {/* Typing Animation Section */}
           <div className="fade-in-element opacity-0 mb-6 sm:mb-8">
             <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-space font-semibold text-tech-primary mb-4">
-              We specialize in{' '}
+              {t('services_tag')} {' '}
               <span className="text-tech-accent border-r-2 border-tech-accent animate-pulse">
                 {typedText}
               </span>
@@ -81,8 +81,7 @@ const HeroSection = () => {
           {/* Subtitle */}
           <div className="fade-in-element opacity-0 mb-8 sm:mb-12">
             <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-tech-muted max-w-4xl mx-auto leading-relaxed px-4">
-              We deliver cutting-edge Frappe-based solutions, mobile applications, 
-              and custom systems that transform businesses and drive digital innovation.
+              {t('hero_subtitle')}
             </p>
           </div>
 
@@ -90,23 +89,19 @@ const HeroSection = () => {
           <div className="fade-in-element opacity-0 flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 sm:mb-16">
             <Link to="/services">
               <button className="w-full sm:w-auto bg-gradient-to-r from-tech-primary to-tech-accent hover:from-tech-accent hover:to-tech-secondary transition-all duration-300 tech-glow px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-tech-light font-medium inline-flex items-center justify-center group modern-card border-0 text-base sm:text-lg">
-                Explore Our Services
+                {t('hero_cta')}
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
-            <button className="w-full sm:w-auto glass-card border border-tech-primary/30 hover:border-tech-primary/60 transition-all duration-300 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-tech-light font-medium inline-flex items-center justify-center group modern-card text-base sm:text-lg">
-              <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              Watch Demo
-            </button>
           </div>
 
           {/* Stats */}
           <div className="fade-in-element opacity-0 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-4xl mx-auto">
             {[
-              { number: '100+', label: 'Projects Delivered' },
-              { number: '50+', label: 'Happy Clients' },
-              { number: '5+', label: 'Years Experience' },
-              { number: '24/7', label: 'Support Available' },
+              { number: '60+', label: t('hero_stats_projects') },
+              { number: '30+', label: t('hero_stats_clients') },
+              { number: '3+', label: t('hero_stats_years') },
+              { number: '24/7', label: t('hero_stats_support') },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="font-space font-bold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-tech-primary mb-2">

@@ -1,4 +1,3 @@
-
 import { Helmet } from 'react-helmet-async';
 
 interface SEOProps {
@@ -16,9 +15,9 @@ interface SEOProps {
 const SEO = ({
   title = "TenaciousTech - Innovative Software Solutions",
   description = "TenaciousTech specializes in cutting-edge Frappe-based solutions, mobile applications, and custom systems. Experience innovation through technology.",
-  keywords = "Frappe development, ERPNext, mobile apps, custom software, Tanzania, Dar es Salaam, software solutions, web development",
-  image = "https://lovable.dev/opengraph-image-p98pqg.png",
-  url = "https://tenacioustech.com",
+  keywords = "Frappe development, ERPNext, mobile app development, custom software solutions, Tanzania software company, Dar es Salaam tech, business automation",
+  image = "/og-image-tenacioustech.png",
+  url = "https://tenacioustech.anteus.com/",
   type = "website",
   author = "TenaciousTech",
   publishedTime,
@@ -44,7 +43,7 @@ const SEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content="TenaciousTech" />
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale" content="en_TZ" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -65,8 +64,8 @@ const SEO = ({
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "TenaciousTech",
-          "url": "https://tenacioustech.com",
-          "logo": image,
+          "url": "https://tenacioustech.anteus.com/",
+          "logo": "/og-image-tenacioustech.png",
           "description": description,
           "address": {
             "@type": "PostalAddress",

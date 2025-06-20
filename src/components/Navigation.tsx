@@ -1,14 +1,16 @@
-
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import LanguageToggle from '@/components/LanguageToggle';
+import { useTranslation } from 'react-i18next';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,24 +25,11 @@ const Navigation = () => {
     setIsMenuOpen(false);
   }, [location]);
 
-  const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Frappe Solutions', href: '/frappe-solutions' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Team', href: '/team' },
-    { 
-      name: 'About', 
-      href: '#about',
-      onClick: () => {
-        if (location.pathname === '/') {
-          const element = document.getElementById('about');
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          window.location.href = '/#about';
-        }
-      }
-    },
+  const navItems: { name: string; href: string }[] = [
+    { name: t('nav_home'), href: '/' },
+    { name: t('nav_services'), href: '/services' },
+    { name: t('nav_frappe'), href: '/frappe-solutions' },
+    { name: t('nav_about'), href: '/about' },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -74,35 +63,29 @@ const Navigation = () => {
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
               {navItems.map((item) => (
-                item.onClick ? (
-                  <button
-                    key={item.name}
-                    onClick={item.onClick}
-                    className="text-white/80 hover:text-tech-electric transition-colors duration-200 text-sm font-medium whitespace-nowrap"
-                  >
-                    {item.name}
-                  </button>
-                ) : (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`text-white/80 hover:text-tech-electric transition-colors duration-200 text-sm font-medium whitespace-nowrap ${
-                      location.pathname === item.href ? 'text-tech-electric' : ''
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                )
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`text-white/80 hover:text-tech-electric transition-colors duration-200 text-sm font-medium whitespace-nowrap ${
+                    location.pathname === item.href ? 'text-tech-electric' : ''
+                  }`}
+                >
+                  {item.name}
+                </Link>
               ))}
               <LanguageToggle />
               <Button 
                 className="bg-tech-electric hover:bg-tech-electric/80 text-white border-0 text-sm px-4 py-2"
                 onClick={() => {
-                  const element = document.getElementById('contact');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  if (location.pathname === '/') {
+                    const element = document.getElementById('contact');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    navigate('/', { state: { scrollToContact: true } });
+                  }
                 }}
               >
-                Get Started
+                {t('nav_get_started')}
               </Button>
             </div>
 
@@ -132,40 +115,31 @@ const Navigation = () => {
             <div className="container mx-auto px-4 py-6">
               <div className="flex flex-col space-y-4">
                 {navItems.map((item) => (
-                  item.onClick ? (
-                    <button
-                      key={item.name}
-                      onClick={() => {
-                        item.onClick();
-                        setIsMenuOpen(false);
-                      }}
-                      className="text-white/80 hover:text-tech-electric transition-colors duration-200 text-left py-3 text-lg font-medium border-b border-white/10"
-                    >
-                      {item.name}
-                    </button>
-                  ) : (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={`text-white/80 hover:text-tech-electric transition-colors duration-200 py-3 text-lg font-medium border-b border-white/10 ${
-                        location.pathname === item.href ? 'text-tech-electric' : ''
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  )
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`text-white/80 hover:text-tech-electric transition-colors duration-200 py-3 text-lg font-medium border-b border-white/10 ${
+                      location.pathname === item.href ? 'text-tech-electric' : ''
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
                 ))}
                 <div className="pt-4">
                   <Button 
                     className="w-full bg-tech-electric hover:bg-tech-electric/80 text-white border-0"
                     onClick={() => {
                       setIsMenuOpen(false);
-                      const element = document.getElementById('contact');
-                      if (element) element.scrollIntoView({ behavior: 'smooth' });
+                      if (location.pathname === '/') {
+                        const element = document.getElementById('contact');
+                        if (element) element.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        navigate('/', { state: { scrollToContact: true } });
+                      }
                     }}
                   >
-                    Get Started
+                    {t('nav_get_started')}
                   </Button>
                 </div>
               </div>

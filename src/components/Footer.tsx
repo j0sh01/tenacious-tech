@@ -1,9 +1,10 @@
-
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, ExternalLink, Instagram, Github, Linkedin, Twitter } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
   
   const frappeProducts = [
     { name: 'ERPNext', url: 'https://frappe.io/erpnext' },
@@ -12,14 +13,10 @@ const Footer = () => {
     { name: 'Frappe Helpdesk', url: 'https://frappe.io/helpdesk' },
   ];
 
-  const quickLinks = [
-    { name: 'Services', to: '/services' },
-    { name: 'Frappe Solutions', to: '/frappe-solutions' },
-    { name: 'Portfolio', to: '/portfolio' },
-    { name: 'About Us', action: () => {
-      const element = document.getElementById('about');
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
-    }},
+  const quickLinks: { name: string; to: string }[] = [
+    { name: t('nav_services'), to: '/services' },
+    { name: t('nav_frappe'), to: '/frappe-solutions' },
+    { name: t('nav_about'), to: '/about' },
   ];
 
   const socialLinks = [
@@ -56,11 +53,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="font-space font-bold text-2xl text-white mb-4">
-              Tenacious<span className="text-tech-electric">Tech</span>
+              {t('footer_company')}
+              <span className="text-tech-electric">Tech</span>
             </div>
             <p className="text-white/70 mb-6 max-w-md leading-relaxed">
-              Pioneering the future of software development with innovative Frappe solutions, 
-              mobile applications, and custom systems that drive digital transformation.
+              {t('footer_tagline')}
             </p>
             <div className="space-y-3 mb-6">
               <div className="flex items-center text-white/70 text-sm">
@@ -79,7 +76,7 @@ const Footer = () => {
             
             {/* Social Media Links */}
             <div className="space-y-3">
-              <h4 className="font-semibold text-white text-sm">Follow Us</h4>
+              <h4 className="font-semibold text-white text-sm">{t('footer_follow')}</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
@@ -99,25 +96,16 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-white mb-6">Quick Links</h4>
+            <h4 className="font-semibold text-white mb-6">{t('footer_quick_links')}</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  {link.to ? (
-                    <Link 
-                      to={link.to}
-                      className="text-white/70 hover:text-tech-electric transition-colors duration-200 text-sm"
-                    >
-                      {link.name}
-                    </Link>
-                  ) : (
-                    <button 
-                      onClick={link.action}
-                      className="text-white/70 hover:text-tech-electric transition-colors duration-200 text-sm"
-                    >
-                      {link.name}
-                    </button>
-                  )}
+                  <Link 
+                    to={link.to}
+                    className="text-white/70 hover:text-tech-electric transition-colors duration-200 text-sm"
+                  >
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -125,11 +113,11 @@ const Footer = () => {
           
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-white mb-6">Our Services</h4>
+            <h4 className="font-semibold text-white mb-6">{t('footer_services')}</h4>
             <ul className="space-y-3 text-white/70 text-sm">
-              <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">Frappe Development</li>
-              <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">Mobile Apps</li>
-              <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">Custom Systems</li>
+              <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">{t('services_frappe_title')}</li>
+              <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">{t('services_mobile_title')}</li>
+              <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">{t('services_custom_title')}</li>
               <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">Cloud Solutions</li>
               <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">Consulting</li>
               <li className="hover:text-tech-electric transition-colors duration-200 cursor-pointer">Support & Maintenance</li>
@@ -138,7 +126,7 @@ const Footer = () => {
           
           {/* Frappe Products */}
           <div>
-            <h4 className="font-semibold text-white mb-6">Frappe Ecosystem</h4>
+            <h4 className="font-semibold text-white mb-6">{t('footer_frappe')}</h4>
             <ul className="space-y-3">
               {frappeProducts.map((product, index) => (
                 <li key={index}>
@@ -158,7 +146,7 @@ const Footer = () => {
                   to="/frappe-solutions"
                   className="text-tech-electric hover:text-white transition-colors duration-200 text-sm font-medium"
                 >
-                  View All Solutions →
+                  {t('footer_view_all')}
                 </Link>
               </li>
             </ul>
@@ -169,17 +157,17 @@ const Footer = () => {
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <p className="text-white/60 text-sm text-center sm:text-left">
-              &copy; {currentYear} TenaciousTech. All rights reserved.
+              &copy; {currentYear} TenaciousTech. {t('footer_rights')}
             </p>
             <div className="flex space-x-6 text-sm">
               <button className="text-white/60 hover:text-tech-electric transition-colors duration-200">
-                Privacy Policy
+                {t('footer_privacy')}
               </button>
               <button className="text-white/60 hover:text-tech-electric transition-colors duration-200">
-                Terms of Service
+                {t('footer_terms')}
               </button>
               <button className="text-white/60 hover:text-tech-electric transition-colors duration-200">
-                Cookie Policy
+                {t('footer_cookie')}
               </button>
             </div>
           </div>

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTranslation } from 'react-i18next';
 
 interface Language {
   code: string;
@@ -21,17 +21,14 @@ const languages: Language[] = [
 ];
 
 const LanguageToggle = () => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(languages[0]);
+  const { i18n } = useTranslation();
+  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   const handleLanguageChange = (language: Language) => {
-    setCurrentLanguage(language);
-    // Here you would typically integrate with a translation service
-    // For now, we'll just store the preference
+    i18n.changeLanguage(language.code);
     localStorage.setItem('preferred-language', language.code);
     
-    // You could integrate with Google Translate or other translation services here
     if (language.code === 'sw') {
-      // Show a message that translation is coming soon
       console.log('Swahili translation selected - integration with translation service would go here');
     }
   };
@@ -54,7 +51,7 @@ const LanguageToggle = () => {
             key={language.code}
             onClick={() => handleLanguageChange(language)}
             className={`flex items-center space-x-2 text-white/80 hover:text-white hover:bg-white/10 ${
-              currentLanguage.code === language.code ? 'bg-white/10' : ''
+              i18n.language === language.code ? 'bg-white/10' : ''
             }`}
           >
             <span className="text-lg">{language.flag}</span>
